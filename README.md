@@ -1,2 +1,2 @@
 # RailroadCrossing
-arduino project
+# RO : Proiect pentru disciplina PMP(Programarea MicroProcesoarelor)
