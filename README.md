@@ -1,2 +1,6 @@
-# RailroadCrossing
-# RO : Proiect pentru disciplina PMP(Programarea MicroProcesoarelor)
+# RC
+
+Components : 
+
+
+Link : 
