@@ -3,11 +3,13 @@
 
 
 
-int ledStanga1 = D0;
-int ledDreapta1 = D1;
+int ledStanga = D0;
 
 
-int ledAlb1 = D2;
+int ledDreapta = D1;
+
+
+int ledAlb = D2;
 
 
 
@@ -18,33 +20,34 @@ const int hallPin1 = D5;
 int buzzer = D8;
 
 void setup() {
-  pinMode(ledStanga1, OUTPUT);
-  pinMode(ledAlb1, OUTPUT);
-  pinMode(ledDreapta1, OUTPUT);  
+  pinMode(ledStanga, OUTPUT);
+  pinMode(ledAlb, OUTPUT);
+  pinMode(ledDreapta, OUTPUT);  
   pinMode(hallPin1, INPUT_PULLUP);
   Serial.begin(74880);
 }
 
 void albIntermitent(){
   delay(1000);
-  digitalWrite(ledAlb1, HIGH);
+  digitalWrite(ledAlb, HIGH); 
   delay(1000);
-  digitalWrite(ledAlb1, LOW);
+  digitalWrite(ledAlb, LOW);
   
 }
 
 
 void rosuIntermitent(){
   
-  digitalWrite(ledStanga1, HIGH);
+  digitalWrite(ledStanga, HIGH);
+  
   tone(buzzer, 100);
   delay(1000);
   noTone(buzzer);
-  digitalWrite(ledStanga1, LOW);
-  digitalWrite(ledDreapta1, HIGH);
+  digitalWrite(ledStanga, LOW);
+  digitalWrite(ledDreapta, HIGH);
   tone(buzzer, 100);
   delay(1000);
-  digitalWrite(ledDreapta1, LOW);
+  digitalWrite(ledDreapta, LOW);
   noTone(buzzer);
   
   
