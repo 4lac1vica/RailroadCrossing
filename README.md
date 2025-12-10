@@ -1,6 +1,6 @@
 # RC
 
-Components : 
+Components : 6 LEDS (4 reds and 2 whites), 1 passive buzzer and 1 hall effect sensor(at 10.12.2025 update)
 
 
-Link : 
+Link (pentru a putea fi observata evolutia montajului): https://www.youtube.com/watch?v=bM316-picHM&list=PLA1ZSYjgQUrnU9FbLbrIvAognBKYMzcuv
