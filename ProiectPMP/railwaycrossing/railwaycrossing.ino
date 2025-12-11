@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-
+//DE RETINUT CA AICI ESTE DOAR UN PROTOTIP. SUNT PREA MULTE PROCESE CARE SE BLOCHEAZA INTRE ELE
 
 
 int ledStanga = D0;
@@ -11,11 +11,12 @@ int ledDreapta = D1;
 
 int ledAlb = D2;
 
-Servo bariera1;
+Servo bariera1, bariera2, bariera3, bariera4;
 
 
 const int hallPin1 = D5;
-bool barrierState = false;
+bool barrierStateSens = false;
+bool barrierStateContrasens = false;
 
 int buzzer = D8;
 
@@ -28,29 +29,58 @@ void setup() {
 
 
   bariera1.attach(D6);
+  bariera3.attach(D7);
+  bariera2.attach(D3);
+  bariera4.attach(D4);
+
+  
   bariera1.write(90);
+  bariera2.write(90);
+  bariera3.write(90);
+  bariera4.write(90);
 }
 
 
-void coboaraBariera(){
+void coboaraBarieraSens(){
 
   for (int unghi = 90; unghi >= 0; unghi--){
     bariera1.write(unghi);
+    bariera3.write(unghi);
     delay(10);
   }
 
-  barrierState = true;
+  barrierStateSens = true;
 }
 
-void ridicaBariera(){
+void ridicaBarieraSens(){
   for (int unghi = 0; unghi <= 90; unghi++){
     bariera1.write(unghi);
+    bariera3.write(unghi);
     delay(10);
   } 
 
-  barrierState = false;
+  barrierStateSens = false;
 }
 
+void coboaraBarieraContrasens(){
+  for (int unghi = 90; unghi >= 0; unghi--){
+    bariera2.write(unghi);
+    bariera4.write(unghi);
+    delay(10);
+  }
+
+  barrierStateContrasens = true;
+}
+
+void ridicaBarieraContrasens(){
+  for (int unghi = 0; unghi <= 90; unghi++){
+    bariera2.write(unghi);
+    bariera4.write(unghi);
+    delay(10);
+  }
+
+  barrierStateContrasens = false;
+}
 
 void albIntermitent(){
   
@@ -79,24 +109,25 @@ void rosuIntermitent(){
 }
 
 
-
-
-
 void loop() {
 
    int valoare = digitalRead(hallPin1);
    Serial.println(valoare);
    if (valoare == HIGH){
     albIntermitent();
-    if(barrierState){
-      ridicaBariera();
+    if(barrierStateSens && barrierStateContrasens){
+      ridicaBarieraSens();
+      
+      ridicaBarieraContrasens();
     }
    }
    else if(valoare == LOW){
     rosuIntermitent();
     
-    if(!barrierState){
-      coboaraBariera();
+    if(!barrierStateSens && !barrierStateContrasens){
+      coboaraBarieraSens();
+      
+      coboaraBarieraContrasens();
     }
     
    }
