@@ -153,12 +153,16 @@ unsigned int previousMillisAlb = 0;
 unsigned int previousMillisRosu = 0;
 unsigned int previousMillisBarieraSens = 0;
 unsigned int previousMillisBarieraContrasens = 0;
-
+unsigned int previousDebounceSemafor = 0;
 
 unsigned int frecventaAlb = 500;
 unsigned int frecventaRosu = 300;
 unsigned int frecventaBariera = 20;
+unsigned int frecventaDebounce = 80;
 
+
+int stableStateSemafor = HIGH;
+int lastReadingSemafor = HIGH;
 
 Servo bariera;
 
@@ -200,7 +204,24 @@ void setup(){
 void loop(){
   unsigned int currentMillis = millis();
 
-  int valoareSemafor = digitalRead(senzorSemafor);
+  //adaugat logica debounce pentru senzorul hall
+
+  int citireBrutaSemafor = digitalRead(senzorSemafor);
+  
+  if (citireBrutaSemafor != lastReadingSemafor){
+    previousDebounceSemafor = currentMillis;
+
+  }
+
+  if ((currentMillis - previousDebounceSemafor) >= frecventaDebounce){
+    if (citireBrutaSemafor != stableStateSemafor){
+      stableStateSemafor = citireBrutaSemafor;
+    }
+  }
+  
+  lastReadingSemafor = citireBrutaSemafor;
+  int valoareSemafor = stableStateSemafor;
+  
   int valoareBariera = digitalRead(senzorBariera);
 
   if (valoareSemafor == HIGH){ 
@@ -238,7 +259,9 @@ void loop(){
     }
   }
 
-  
+   
+
+  //coborarea barierelor se va face cu un senzor infrarosu
 
   if (currentMillis - previousMillisBarieraSens >= frecventaBariera){
     
@@ -262,6 +285,7 @@ void loop(){
     }
   }
 
+  //senzor care ajuta la ridicarea barierelor si la oprirea semaforului dupa ce trece trenul(tot Hall cel mai probabil)
   
 
 
