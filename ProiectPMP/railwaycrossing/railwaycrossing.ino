@@ -8,8 +8,8 @@ const int leduriStanga = D0;
 const int leduriDreapta = D1;
 const int leduriAlbe = D2;
 
-const int senzorSemafor = D5;
-const int senzorBariera = D7;
+const int senzorSemafor1 = D5;
+const int senzorSemafor2 = D3;
 const int buzzer = D8;
 
 bool stareAlb = false;
@@ -65,6 +65,15 @@ void setup(){
   bariera.attach(D6);
   bariera.write(90);
 }
+
+//incercam modularizare(citire inputuri - procesarea datelor - update outputs)
+
+
+void readInputs(){}
+
+void processData(){}
+
+void updateOutputs(){}
 
 
 
