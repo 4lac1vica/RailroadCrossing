@@ -69,11 +69,18 @@ void setup(){
 //incercam modularizare(citire inputuri - procesarea datelor - update outputs)
 
 
-void readInputs(){}
+void readInputs(){
+  
 
-void processData(){}
+}
 
-void updateOutputs(){}
+void processData(){
+
+}
+
+void updateOutputs(){
+
+}
 
 
 
@@ -137,7 +144,7 @@ void loop(){
 
    
 
-  //coborarea barierelor se va face cu un senzor infrarosu
+  
 
   if (currentMillis - previousMillisBarieraSens >= frecventaBariera){
     
