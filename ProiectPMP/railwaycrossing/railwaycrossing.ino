@@ -4,37 +4,37 @@
 
 //de adaugat failsafe in caz ca bariera nu functioneaza. Buton + Intrerupere.
 
-const int leduriStanga = D0;
-const int leduriDreapta = D1;
-const int leduriAlbe = D2;
+const int leduriStanga = 2;
+const int leduriDreapta = 3;
+const int leduriAlbe = 4;
 
 
 
-const int senzorSemafor1 = D5;
-const int senzorSemafor2 = D3;
-const int buzzer = D8;
+const int senzorSemafor1 = 5;
+const int senzorSemafor2 = 6;
+const int buzzer = 8;
 
 bool stareAlb = false;
 bool stareRosu = false;
 
 
 
-unsigned int previousMillisAlb = 0;
-unsigned int previousMillisRosu = 0;
-unsigned int previousMillisBarieraSens = 0;
-unsigned int previousMillisBarieraContrasens = 0;
-unsigned int previousDebounceSemafor = 0;
+unsigned long  previousMillisAlb = 0;
+unsigned long previousMillisRosu = 0;
+unsigned long previousMillisBarieraSens = 0;
+unsigned long previousMillisBarieraContrasens = 0;
+unsigned long previousDebounceSemafor = 0;
 
-const unsigned int frecventaAlb = 500;
-const unsigned int frecventaRosu = 300;
-const unsigned int frecventaBariera = 20;
-const unsigned int frecventaDebounce = 80;
+const unsigned long frecventaAlb = 500;
+const unsigned long frecventaRosu = 300;
+const unsigned long frecventaBariera = 20;
+const unsigned  frecventaDebounce = 80;
 
 
 int stableStateSemafor = HIGH;
 int lastReadingSemafor = HIGH;
 
-Servo bariera;
+//Servo bariera;
 
 int pozitieBariera = 90;
 
@@ -62,12 +62,11 @@ void setup(){
   pinMode(leduriDreapta, OUTPUT);
   pinMode(leduriAlbe, OUTPUT);
 
-  pinMode(senzorSemafor, INPUT_PULLUP);
-  pinMode()
+  pinMode(senzorSemafor2, INPUT_PULLUP);
 
 
-  bariera.attach(D6);
-  bariera.write(90);
+ // bariera.attach(7);
+ // bariera.write(90);
 }
 
 //incercam modularizare(citire inputuri - procesarea datelor - update outputs)
@@ -89,11 +88,11 @@ void updateOutputs(){
 
 
 void loop(){
-  unsigned int currentMillis = millis();
+  unsigned long currentMillis = millis();
 
   //adaugat logica debounce pentru senzorul hall
 
-  int citireBrutaSemafor = digitalRead(senzorSemafor);
+  int citireBrutaSemafor = digitalRead(senzorSemafor2);
   
   if (citireBrutaSemafor != lastReadingSemafor){
     previousDebounceSemafor = currentMillis;
@@ -109,7 +108,7 @@ void loop(){
   lastReadingSemafor = citireBrutaSemafor;
   int valoareSemafor = stableStateSemafor;
   
-  int valoareBariera = digitalRead(senzorBariera);
+ // int valoareBariera = digitalRead(senzorBariera);
 
   if (valoareSemafor == HIGH){ 
     semafor = MOD_ALB;
@@ -136,7 +135,7 @@ void loop(){
       if (stareRosu){
         digitalWrite(leduriStanga, HIGH);
         digitalWrite(leduriDreapta, LOW);
-        tone(buzzer, 100); 
+        tone(buzzer, 1000, 200); 
       }
       else {
         digitalWrite(leduriStanga, LOW);
@@ -147,7 +146,7 @@ void loop(){
   }
 
    
-
+/*
   
 
   if (currentMillis - previousMillisBarieraSens >= frecventaBariera){
@@ -171,7 +170,7 @@ void loop(){
         break;
     }
   }
-
+*/
   //senzor care ajuta la ridicarea barierelor si la oprirea semaforului dupa ce trece trenul(tot Hall cel mai probabil)
   
 
