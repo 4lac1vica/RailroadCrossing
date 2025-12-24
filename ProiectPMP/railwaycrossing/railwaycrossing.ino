@@ -53,7 +53,13 @@ void setup(){
 
 
   bariera1.attach(9);
+  bariera2.attach(10);
+  bariera3.attach(11);
+  bariera4.attach(12);
   bariera1.write(unghiSus);
+  bariera2.write(unghiSus);
+  bariera3.write(unghiSus);
+  bariera4.write(unghiSus);
   stareAlb = false;
   stareRosu = false;
   test = false;
@@ -168,4 +174,3 @@ modifyOutputs();
   
 
 }
-
