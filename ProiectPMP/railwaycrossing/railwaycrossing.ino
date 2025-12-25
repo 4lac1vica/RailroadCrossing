@@ -32,7 +32,7 @@ bool stareRosu;
 bool test;
 StariSemafor stareSemafor;
 StariBariera stareBariera;
-
+int valoarePotentiometru;
 Servo bariera1;
 Servo bariera2;
 Servo bariera3;
@@ -71,6 +71,9 @@ void setup(){
   
 }
 
+void readInputs(){
+  valoarePotentiometru = analogRead(A0);
+}
 
 
 void functieAlb(){
