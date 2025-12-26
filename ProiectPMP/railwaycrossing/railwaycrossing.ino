@@ -27,12 +27,17 @@ unsigned long previousBariera = 0;
 unsigned long frecventaBariera = 20;
 const unsigned long frecventa = 1000;
 const unsigned long frecventaTest = 10000;
+const unsigned long frecventaBuzzer = 300;
+unsigned long previousBuzzer = 0;
 bool stareAlb;
 bool stareRosu;
 bool test;
 StariSemafor stareSemafor;
 StariBariera stareBariera;
 int valoarePotentiometru;
+const int buzzer = 8;
+bool buzzerState;
+
 /*
 Servo bariera1;
 Servo bariera2;
@@ -51,7 +56,7 @@ void setup(){
   pinMode(ledAlb, OUTPUT);
   pinMode(ledRosuStanga, OUTPUT);
   pinMode(ledRosuDreapta, OUTPUT);
-
+  pinMode(buzzer, OUTPUT);
 /*
   bariera1.attach(9);
   bariera2.attach(10);
@@ -65,6 +70,7 @@ void setup(){
   stareAlb = false;
   stareRosu = false;
   test = false;
+  buzzerState = false;
   
 
   stareSemafor = MOD_ALB;
@@ -138,7 +144,27 @@ void controlBariera(){
   }
 }
 */
+void buzzerControl(){
+  unsigned long current = millis();
+  
+  if (stareSemafor == MOD_ROSU){
+    if (current - previousBuzzer >= frecventaBuzzer){
+      previousBuzzer = current;
+      buzzerState = !buzzerState;
 
+      if (buzzerState){
+        tone(buzzer, 1000, 200);
+      }
+      else {
+        noTone(buzzer);
+      }
+    }
+  }
+  else if (stareSemafor == MOD_ALB){
+    noTone(buzzer);
+    buzzerState = false;
+  }
+}
 
 void modifyOutputs(){
   switch(stareSemafor){
@@ -159,11 +185,10 @@ void loop(){
   //functieRosu();
  
 readInputs();
-
 processData();
 //controlBariera();
 modifyOutputs();
-
+buzzerControl();
   
 
 }
