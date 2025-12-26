@@ -33,11 +33,12 @@ bool test;
 StariSemafor stareSemafor;
 StariBariera stareBariera;
 int valoarePotentiometru;
+/*
 Servo bariera1;
 Servo bariera2;
 Servo bariera3;
 Servo bariera4;
-
+*/
 
 int unghiBariera = 90;
 const int unghiSus = 90;
@@ -51,7 +52,7 @@ void setup(){
   pinMode(ledRosuStanga, OUTPUT);
   pinMode(ledRosuDreapta, OUTPUT);
 
-
+/*
   bariera1.attach(9);
   bariera2.attach(10);
   bariera3.attach(11);
@@ -60,13 +61,14 @@ void setup(){
   bariera2.write(unghiSus);
   bariera3.write(unghiSus);
   bariera4.write(unghiSus);
+*/
   stareAlb = false;
   stareRosu = false;
   test = false;
   
 
-  stareSemafor = MOD_ROSU;
-  stareBariera = RIDICAT;
+  stareSemafor = MOD_ALB;
+//  stareBariera = RIDICAT;
 
   
 }
@@ -75,7 +77,14 @@ void readInputs(){
   valoarePotentiometru = analogRead(A0);
 }
 
-
+void processData(){
+  if (valoarePotentiometru >= 600){
+    stareSemafor = MOD_ROSU;
+  }
+  else {
+    stareSemafor = MOD_ALB;
+  }
+}
 void functieAlb(){
 
   
@@ -101,7 +110,7 @@ void functieRosu(){
   }
 
 }
-
+/*
 void controlBariera(){
   unsigned long current = millis();
 
@@ -128,7 +137,7 @@ void controlBariera(){
    }
   }
 }
-
+*/
 
 
 void modifyOutputs(){
@@ -148,30 +157,11 @@ void loop(){
 
   //modifyOutputs();
   //functieRosu();
-  unsigned long currentTest = millis();
+ 
+readInputs();
 
-  if (currentTest - previousTest >= frecventaTest){
-  previousTest = currentTest;
-  test = !test;
-  stareSemafor = test ? MOD_ALB : MOD_ROSU;
-
-  
-  previousAlb = currentTest;
-  previousRosu = currentTest;
-  stareAlb = false;
-  stareRosu = false;
-}
-
-  if (stareSemafor == MOD_ROSU && stareBariera == RIDICAT) {
-   stareBariera = COBORARE;
-}
-
-  if (stareSemafor == MOD_ALB && stareBariera == COBORAT) {
-    stareBariera = RIDICARE;
-}
-
-
-controlBariera();
+processData();
+//controlBariera();
 modifyOutputs();
 
   
