@@ -1,6 +1,5 @@
 #include <Servo.h>
 
-#define STEP 10
 
 enum StariSemafor{
   MOD_ROSU,
@@ -38,6 +37,8 @@ int valoarePotentiometru;
 const int buzzer = 8;
 bool buzzerState;
 
+bool intrerupereStatus = false;
+
 /*
 Servo bariera1;
 Servo bariera2;
@@ -49,7 +50,9 @@ int unghiBariera = 90;
 const int unghiSus = 90;
 const int unghiJos = 0;
 
-
+void INTR(){
+  intrerupereStatus = true; 
+}
 
 
 void setup(){
@@ -153,7 +156,7 @@ void buzzerControl(){
       buzzerState = !buzzerState;
 
       if (buzzerState){
-        tone(buzzer, 1000, 200);
+        tone(buzzer, 500);
       }
       else {
         noTone(buzzer);
