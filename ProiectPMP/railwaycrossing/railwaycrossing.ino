@@ -39,12 +39,11 @@ bool buzzerState;
 
 bool intrerupereStatus = false;
 
-/*
+
 Servo bariera1;
 Servo bariera2;
-Servo bariera3;
-Servo bariera4;
-*/
+
+
 
 int unghiBariera = 90;
 const int unghiSus = 90;
@@ -60,16 +59,16 @@ void setup(){
   pinMode(ledRosuStanga, OUTPUT);
   pinMode(ledRosuDreapta, OUTPUT);
   pinMode(buzzer, OUTPUT);
-/*
+
   bariera1.attach(9);
   bariera2.attach(10);
-  bariera3.attach(11);
-  bariera4.attach(12);
+//  bariera3.attach(11);
+//  bariera4.attach(12);
   bariera1.write(unghiSus);
   bariera2.write(unghiSus);
-  bariera3.write(unghiSus);
-  bariera4.write(unghiSus);
-*/
+//  bariera3.write(unghiSus);
+//  bariera4.write(unghiSus);
+
   stareAlb = false;
   stareRosu = false;
   test = false;
@@ -77,7 +76,7 @@ void setup(){
   
 
   stareSemafor = MOD_ALB;
-//  stareBariera = RIDICAT;
+  stareBariera = RIDICAT;
 
   
 }
@@ -87,11 +86,17 @@ void readInputs(){
 }
 
 void processData(){
-  if (valoarePotentiometru >= 600){
+  if (valoarePotentiometru >= 500){
     stareSemafor = MOD_ROSU;
+    if (valoarePotentiometru >= 750){
+      stareBariera = COBORARE;
+    }
   }
   else {
     stareSemafor = MOD_ALB;
+    if (stareBariera == COBORAT){
+      stareBariera = RIDICARE;
+    }
   }
 }
 void functieAlb(){
@@ -119,7 +124,8 @@ void functieRosu(){
   }
 
 }
-/*
+
+
 void controlBariera(){
   unsigned long current = millis();
 
@@ -130,6 +136,7 @@ void controlBariera(){
     if (unghiBariera > unghiJos){
       unghiBariera--;
       bariera1.write(unghiBariera);
+      bariera2.write(unghiBariera);
     }
     else {
       stareBariera = COBORAT;
@@ -139,6 +146,7 @@ void controlBariera(){
     if (unghiBariera < unghiSus){
       unghiBariera++;
       bariera1.write(unghiBariera);
+      bariera2.write(unghiBariera);
     }
     else {
       stareBariera = RIDICAT;
@@ -146,7 +154,8 @@ void controlBariera(){
    }
   }
 }
-*/
+
+
 void buzzerControl(){
   unsigned long current = millis();
   
@@ -189,8 +198,9 @@ void loop(){
  
 readInputs();
 processData();
-//controlBariera();
+controlBariera();
 modifyOutputs();
+
 buzzerControl();
   
 
