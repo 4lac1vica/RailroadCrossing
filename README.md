@@ -19,7 +19,10 @@ Proiectul a fost realizat pentru laboratorul de la materia Proiectare cu Micropr
 
 **Schema Electrica**
 
-**Schema modulelor**
+**Schema de montaj**
+
+
+Proiectul este **scalabil**, putand fi adaugate mai multe functionalitati, precum un **buzzer pentru a genera o alarma cand ***trenul* se apropie**, un **semafor de cale** care sa simuleze trecerea trenului, mai precis, trecerea sa fie actionata de acel semafor, etc.
 
 
 ## EN 
