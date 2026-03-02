@@ -5,6 +5,7 @@ Tools : **Arduino IDE**
 
 ## RO 
 Acest proiect propune proiectarea unui prototip de trecere la nivel cu calea ferata, folosindu-ma de **un potentiometru**, **LED-uri**, **2 servomotoare** si **un capacitor**. Acestea au fost lipite pe un placaj din poliuretan. 
+
 Link (pentru a putea fi observata evolutia montajului): https://www.youtube.com/watch?v=bM316-picHM&list=PLA1ZSYjgQUrnU9FbLbrIvAognBKYMzcuv
 
 Proiectul a fost realizat pentru laboratorul de la materia Proiectare cu Microprocesoare. Codul este scris pentru Arduino Uno, fiind compatibil cu acest tip de placa. Pentru a programa sistemul am folosit tool-ul **Arduino IDE**, codul fiind scris in **C++**. In acest proiect am folosit mai multe notiuni specifice domeniului electronicii (la partea de montaj am folosit un **capacitor**), dar si notiuni specifice sistemelor automatizate, precum un **automat cu stari finite** pentru **semafoare (LED-uri)**, unul pentru **bariere(servomotoare)**. Desigur am folosit si cronometre interioare ale AVR, marcate prin functia **millis()**, pentru a paraleliza codul. 
@@ -28,6 +29,19 @@ Proiectul este **scalabil**, putand fi adaugate mai multe functionalitati, precu
 ## EN 
 
 This project proposes the design of a train barrier prototype, **using a potentiometer**, **LEDs**, **2 servomotors** and **one capacitor**. These were attached to a **polyurethane board**.
+
 Link : https://www.youtube.com/watch?v=bM316-picHM&list=PLA1ZSYjgQUrnU9FbLbrIvAognBKYMzcuv
+
+**Features**
+
+- **Finit State Machines**
+- **Timer1.h library**
+- **Servo.h library**
+
+**State Diagrams**
+
+**Electrical diagram**
+
+**Assembly diagram**
 
 
