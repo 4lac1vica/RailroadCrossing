@@ -23,6 +23,8 @@ Proiectul a fost realizat pentru laboratorul de la materia Proiectare cu Micropr
 
 <img width="626" height="397" alt="image" src="https://github.com/user-attachments/assets/b92ba507-c847-4997-8387-0ddd489f96c7" />
 
+
+
 **Schema de montaj**
 
 
