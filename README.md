@@ -19,8 +19,10 @@ Proiectul a fost realizat pentru laboratorul de la materia Proiectare cu Micropr
 **Organigrama pentru FSM-uri**
 
 **Schema Electrica**
+<img width="626" height="397" alt="image" src="https://github.com/user-attachments/assets/b92ba507-c847-4997-8387-0ddd489f96c7" />
 
 **Schema de montaj**
+<img width="572" height="449" alt="image" src="https://github.com/user-attachments/assets/0fbad88a-040c-4d5a-b4f2-384074b13954" />
 
 
 Proiectul este **scalabil**, putand fi adaugate mai multe functionalitati, precum un **buzzer** pentru a genera o alarma cand *trenul* se apropie, un **semafor de cale** care sa simuleze trecerea trenului, mai precis, trecerea sa fie actionata de acel semafor, etc.
@@ -41,7 +43,9 @@ Link : https://www.youtube.com/watch?v=bM316-picHM&list=PLA1ZSYjgQUrnU9FbLbrIvAo
 **State Diagrams**
 
 **Electrical diagram**
+<img width="626" height="397" alt="image" src="https://github.com/user-attachments/assets/f828d2cc-2ed5-477a-a4f5-7523addfef6c" />
 
 **Assembly diagram**
+<img width="616" height="450" alt="image" src="https://github.com/user-attachments/assets/d4e9f9cd-8a2a-4a0a-927e-2c91a51c01f3" />
 
 
